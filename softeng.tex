@@ -1,0 +1,78 @@
+\documentclass[12pt,fleqn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{usecasespec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+
+\begin{document}
+
+	\listofusecasespec
+	\newpage
+	
+	\begin{usecasespec}{Sign-up}
+		\label{us:signup}
+		\uscreatedby{Guilherme}
+		\usactor{Usuário}
+		\usdescription{Lorem ipsum dolor sit amet aliqua.\newline
+		Excepteur sint occaecat cupidatat non proident.}
+		\usprecondictions{Não estar logado}
+		\uspostcondictions{Estar logado}
+		\uspriority{Alta}
+		\usfrequency{Uma vez}
+		\usnormalcourse{
+			\begin{enumerate}
+				\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				\item Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				\item Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				\item Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				\item Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			\end{enumerate}
+		}
+		\usalternativecourse{
+			\begin{enumerate}
+				\item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+				\item Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+			\end{enumerate}
+		}
+		\usexceptions{
+			\begin{itemize}
+				\item Duis aute irure dolor.
+				\item Excepteur sint occaecat.
+			\end{itemize}
+		}
+		\usincludes{\ref{us:signin}}
+		\usspecialrequirements{Qux}
+		\usassumptions{Nothing}
+		\usnotes{Hello world}
+		\makeusecasespec		
+	\end{usecasespec}
+	
+	\newpage
+	
+	\begin{usecasespec}{Sign-in}
+		\label{us:signin}
+		\uscreatedby{Guilherme}
+		\usactor{Usuário}
+		\usdescription{Excepteur sint occaecat cupidatat non proident.}
+		\usprecondictions{Foo}
+		\uspostcondictions{Bar}
+		\uspriority{Baixa}
+		\usfrequency{Sempre}
+		\usnormalcourse{
+			\begin{enumerate}
+				\item Lorem ipsum dolor sit amet.
+				\item Ut enim ad minim veniam.
+			\end{enumerate}
+		}
+		\usexceptions{
+			\begin{itemize}
+				\item Excepteur sint occaecat.
+			\end{itemize}
+		}
+		\makeusecasespec
+	\end{usecasespec}
+	
+	We can link to~\autoref{us:signup} (with label) or to same point~\ref{us:signup} (without label).
+	
+\end{document}

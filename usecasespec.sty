@@ -1,0 +1,189 @@
+% +--------------------------------------------------+
+% |             USE CASE SPECIFICATION               |
+% +--------------------------------------------------+
+%
+% Copyright (c) 2017 by Guilherme Goncalves.
+% All Rights Reserved.
+%
+% This file is part of the softeng distribution release 1.0.0
+% -----------------------------------------------------------
+%
+% It may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2003/12/01 or later.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{usecasespec}[2017/09/23 v1.0.0 Use Case Specification]
+
+\RequirePackage{array}
+\RequirePackage{booktabs} % To thicken table lines
+\RequirePackage{longtable} % To split table in pages
+\RequirePackage{ragged2e} % To full page width table
+\RequirePackage{enumitem} % To set defaults for enumerate and itemize
+\RequirePackage{tocloft}% http://ctan.org/pkg/tocloft
+\RequirePackage{etoolbox}% http://ctan.org/pkg/etoolbox
+
+% listing
+\newcommand{\listusecasespecname}{Use case specifications}
+\newlistof{usecasespec}{louss}{\listusecasespecname}
+\newcommand{\usecasespecautorefname}{Use case}
+
+% table width settings
+\newlength\ltlen
+\setlength\ltlen{\dimexpr\textwidth-3\arrayrulewidth-4\tabcolsep}
+
+\newenvironment{usecasespec}[1]
+{%	
+    %-------------------------------
+    % SUB COMMANDS DEFINITION
+
+    % createdby
+    \newcommand*{\@uscreatedby}{}
+    \newcommand*{\uscreatedby}[1]{\renewcommand*{\@uscreatedby}{##1}}
+
+    % actor
+    \newcommand*{\@usactor}{}
+    \newcommand*{\usactor}[1]{\renewcommand*{\@usactor}{##1}}
+
+    % description
+    \newcommand*{\@usdescription}{}
+    \newcommand*{\usdescription}[1]{\renewcommand*{\@usdescription}{##1}}
+
+    % precondictions
+    \newcommand*{\@usprecondictions}{}
+    \newcommand*{\usprecondictions}[1]{\renewcommand*{\@usprecondictions}{##1}}
+
+    % postcondictions
+    \newcommand*{\@uspostcondictions}{}
+    \newcommand*{\uspostcondictions}[1]{\renewcommand*{\@uspostcondictions}{##1}}
+
+    % priority
+    \newcommand*{\@uspriority}{}
+    \newcommand*{\uspriority}[1]{\renewcommand*{\@uspriority}{##1}}
+
+    % frequency
+    \newcommand*{\@usfrequency}{}
+    \newcommand*{\usfrequency}[1]{\renewcommand*{\@usfrequency}{##1}}
+    
+    % normalcourse
+    \newcommand*{\@usnormalcourse}{}
+    \newcommand*{\usnormalcourse}[1]{\renewcommand*{\@usnormalcourse}{##1}}
+
+    % alternativecourse
+    \newcommand*{\@usalternativecourse}{}
+    \newcommand*{\usalternativecourse}[1]{\renewcommand*{\@usalternativecourse}{##1}}
+
+    % exceptions
+    \newcommand*{\@usexceptions}{}
+    \newcommand*{\usexceptions}[1]{\renewcommand*{\@usexceptions}{##1}}
+
+    % includes
+    \newcommand*{\@usincludes}{}
+    \newcommand*{\usincludes}[1]{\renewcommand*{\@usincludes}{##1}}
+
+    % specialrequirements
+    \newcommand*{\@usspecialrequirements}{}
+    \newcommand*{\usspecialrequirements}[1]{\renewcommand*{\@usspecialrequirements}{##1}}
+
+    % assumptions
+    \newcommand*{\@usassumptions}{}
+    \newcommand*{\usassumptions}[1]{\renewcommand*{\@usassumptions}{##1}}
+
+    % notes
+    \newcommand*{\@usnotes}{}
+    \newcommand*{\usnotes}[1]{\renewcommand*{\@usnotes}{##1}} 
+    
+	% increment counter
+	\refstepcounter{usecasespec}
+	\addcontentsline{louss}{usecasespec}{\protect\numberline{\theusecasespec}#1}\par
+	
+    %-------------------------------
+
+    % TABLE
+    \newcommand{\makeusecasespec}{%
+        
+        % set itemize and enumarate defaults
+        \setlist[enumerate]{noitemsep, topsep=0pt, labelindent=0pt,labelwidth=0.75em,leftmargin=!}
+        \setlist[itemize]{noitemsep, topsep=0pt, labelindent=0pt,labelwidth=0.75em,leftmargin=!}
+
+		\begin{longtable}{>{\RaggedRight}r>{\RaggedRight}p{0.7\ltlen}}
+			
+            % HEADER
+            \toprule[1pt]\midrule[0.3pt]
+            \textbf{Use Case ID} & \textbf{\theusecasespec}\\
+            Use Case Name & {#1}\\
+            Created By & \@uscreatedby\\
+            \midrule[1pt]
+            \endfirsthead
+            
+            % header for page splits
+            \toprule[1pt]\midrule[0.3pt]
+            \textbf{Use Case } & \textbf{\theusecasespec} - {#1}\\
+            \midrule[1pt]
+            \endhead
+
+            % BODY
+            
+            %actor
+            Actors & \@usactor\\
+            
+            %description
+            Description & \@usdescription\\
+            
+            %precondictions
+            Precondictions & \@usprecondictions\\
+            
+            %postcondictions
+            Postcondictions & \@uspostcondictions\\
+
+            %priority
+            Priority & \@uspriority\\
+
+            %frequency
+            Frequency of use & \@usfrequency\\
+
+            %normalcourse
+            Normal course of events & \@usnormalcourse\\
+
+            %alternativecourse
+            \ifx\@usalternativecourse\empty\else
+            Alternative course of events & \@usalternativecourse\\
+            \fi                     
+
+            %exceptions
+            \ifx\@usexceptions\empty\else
+            Exceptions & \@usexceptions\\
+            \fi                     
+
+            %includes
+            \ifx\@usincludes\empty\else
+            Includes & \@usincludes\\
+            \fi                     
+
+            %specialrequirements
+            \ifx\@usspecialrequirements\empty\else
+            Special requirements & \@usspecialrequirements\\
+            \fi                     
+
+            %assumptions
+            \ifx\@usassumptions\empty\else
+            Assumptions & \@usassumptions\\
+            \fi                     
+
+            %notes
+            \ifx\@usnotes\empty\else
+            Notes and issues & \@usnotes\\
+            \fi                     
+
+            \midrule[0.3pt]\bottomrule[1pt]
+        \end{longtable}
+    }%
+}%
+
+\endinput
+%%
+%% End of file `usecasespec.sty'.
