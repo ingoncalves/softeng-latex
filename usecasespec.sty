@@ -45,6 +45,18 @@
     \newcommand*{\@uscreatedby}{}
     \newcommand*{\uscreatedby}[1]{\renewcommand*{\@uscreatedby}{##1}}
 
+	% createdat
+	\newcommand*{\@uscreatedat}{}
+	\newcommand*{\uscreatedat}[1]{\renewcommand*{\@uscreatedat}{##1}}
+	
+	% updatedat
+	\newcommand*{\@usupdatedat}{}
+	\newcommand*{\usupdatedat}[1]{\renewcommand*{\@usupdatedat}{##1}}
+	
+	% version
+	\newcommand*{\@usversion}{}
+	\newcommand*{\usversion}[1]{\renewcommand*{\@usversion}{##1}}
+	
     % actor
     \newcommand*{\@usactor}{}
     \newcommand*{\usactor}[1]{\renewcommand*{\@usactor}{##1}}
@@ -115,8 +127,11 @@
             % HEADER
             \toprule[1pt]\midrule[0.3pt]
             \textbf{Use Case ID} & \textbf{\theusecasespec}\\
-            Use Case Name & {#1}\\
-            Created By & \@uscreatedby\\
+            Use Case name & {#1}\\
+            Created by & \@uscreatedby\\
+            Created at & \@uscreatedat\\
+            Updated at & \@usupdatedat\\
+            Version & \ifx\@usversion\empty 1 \else \@usversion\fi\\
             \midrule[1pt]
             \endfirsthead
             
